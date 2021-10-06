@@ -1,0 +1,40 @@
+<div class="row">
+  <h2>Transaction History</h2>
+</div>
+
+<div class="container-fluid col-md-12">
+  <table class="table table-hover">
+    <thead class="text-primary">
+    <tr>
+      <th>Date and Time</th>
+      <th>Action</th>
+      <th>Action Detail</th>
+      <th>Token Change</th>
+      <th>Balance After Transaction</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions; let i = index;">
+
+      <td>{{transaction.dateAndTime}}</td>
+
+      <td>{{transaction.transactionType}}</td>
+
+      <td *ngIf="transaction.transactionType === 'CardRefill'">Purchased {{transaction.numberTokensPurchased}} tokens</td>
+      <td *ngIf="transaction.transactionType === 'GamePlay'">Played {{ transaction.gameTitle}}</td>
+
+      <td *ngIf="transaction.transactionType === 'CardRefill'" class="text-success">
+        <fa-icon [icon]="faArrowUp"></fa-icon>
+        {{transaction.numberTokensPurchased}}
+      </td>
+      <td *ngIf="transaction.transactionType === 'GamePlay'" class="text-danger">
+        <fa-icon [icon]="faArrowDown"></fa-icon>
+        {{ transaction.tokenCostPerGame}}
+      </td>
+
+      <td>{{transaction.balanceAfterTransaction}} tokens left</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
