@@ -25,11 +25,11 @@
       <td *ngIf="transaction.transactionType === 'GamePlay'">Played {{ transaction.gameTitle}}</td>
 
       <td *ngIf="transaction.transactionType === 'CardRefill'" class="text-success">
-        <fa-icon [icon]="faArrowUp"></fa-icon>
+<!--        <fa-icon [icon]="faArrowUp"></fa-icon>-->
         {{transaction.numberTokensPurchased}}
       </td>
       <td *ngIf="transaction.transactionType === 'GamePlay'" class="text-danger">
-        <fa-icon [icon]="faArrowDown"></fa-icon>
+<!--        <fa-icon [icon]="faArrowDown"></fa-icon>-->
         {{ transaction.tokenCostPerGame}}
       </td>
 
