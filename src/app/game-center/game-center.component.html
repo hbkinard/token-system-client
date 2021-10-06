@@ -1,0 +1,14 @@
+<div class="row">
+  <h2>Game Center</h2>
+</div>
+
+<div *ngFor="let game of games" class="requestBlock shadow p-4 bg-light">
+  <h5>Game Title: {{ game.gameTitle }} </h5>
+  <h5>Tokens to Play: {{ game.tokensToPlay }} </h5>
+  <button *ngIf="currentBalance >= game.tokensToPlay" class="btn btn-success" >Play Game</button>
+
+  <div *ngIf="currentBalance < game.tokensToPlay">
+    <p class="text-danger">Current balance too low to play</p>
+    <button class="btn btn-info">Card Refill</button>
+  </div>
+</div>

@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+.jumbotron  {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+hr {
+  height: 1px;
+  background: grey;
+}
+
+.category {
+  margin-bottom: 50px;
+}
