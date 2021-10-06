@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameCenterComponent } from './game-center/game-center.component';
 import { LedgerComponent } from './ledger/ledger.component';
+import { ArcadeComponent } from './arcade/arcade.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameCenterComponent,
-    LedgerComponent
+    LedgerComponent,
+    ArcadeComponent
   ],
   imports: [
     BrowserModule,
