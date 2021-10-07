@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-game-center',
@@ -30,8 +30,19 @@ export class GameCenterComponent implements OnInit {
   @Input()
   currentBalance = 0;
 
+  @Output()
+  gamePlayed = new EventEmitter<{gameTitle: string, tokensToPlay: number}>();
+
+
   ngOnInit(): void {
   }
 
+  hasEnoughTokensToPlay(numberTokensNeeded: number) {
+    return this.currentBalance >= numberTokensNeeded;
+  }
+
+  playGame(gameTitle: string, tokensToPlay: number) {
+    this.gamePlayed.emit({gameTitle: gameTitle, tokensToPlay: tokensToPlay})
+  }
 }
 

@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+//import { CardRefill } from '../models/cardRefill.model';
+
 // import { CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -10,10 +12,11 @@ export class CardRefillComponent implements OnInit {
 
   isRefillingCard = false;
   invalidTokenPurchase = false;
-  showTotalTokenCost = false;
+  showingTotalTokenCost = false;
   numberTokensRequested = 0;
   numberTokensPurchased = 0;
   totalTokenCost = 0;
+  tokenInput = 0;
 
   @Input()
   currentBalance = 0;
@@ -25,12 +28,19 @@ export class CardRefillComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
   }
 
   togglePurchaseStatus() {
-    this.isRefillingCard ? this.isRefillingCard = false : this.isRefillingCard = true;
+    if (this.isRefillingCard) {
+      this.isRefillingCard = false;
+      //this.toggleShowingTotalCost();
+      this.tokenInput = 0;
+      this.totalTokenCost = 0;
+    } else {
+      this.isRefillingCard = true;
+    }
+
   }
 
   setNumberTokensRequested(event: any): void {
@@ -39,10 +49,16 @@ export class CardRefillComponent implements OnInit {
 
     // convert string input to number
     this.numberTokensRequested = +this.numberTokensRequested;
+  }
 
-    // possible add this to show user total token cost in money format / with a currency pipe
-    // this.totalTokenCost = this.numberTokensRequested * .25;
 
+  showTotalCost() {
+    this.totalTokenCost = this.tokenInput * .25;;
+    this.toggleShowingTotalCost();
+  }
+
+  toggleShowingTotalCost() {
+    this.showingTotalTokenCost ? this.showingTotalTokenCost = false : this.showingTotalTokenCost = true;
   }
 
   purchaseTokens() {
@@ -57,8 +73,10 @@ export class CardRefillComponent implements OnInit {
       this.numberTokensPurchased = this.numberTokensRequested;
       this.tokensPurchased.emit({numberTokensPurchased: this.numberTokensPurchased})
       this.togglePurchaseStatus();
+      this.toggleShowingTotalCost();
       this.invalidTokenPurchase = false;
+      this.tokenInput = 0;
+      this.totalTokenCost = 0;
     }
   }
-
 }

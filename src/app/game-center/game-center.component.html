@@ -5,10 +5,11 @@
 <div *ngFor="let game of games" class="requestBlock shadow p-4 bg-light">
   <h5>Game Title: {{ game.gameTitle }} </h5>
   <h5>Tokens to Play: {{ game.tokensToPlay }} </h5>
-  <button *ngIf="currentBalance >= game.tokensToPlay" class="btn btn-success" >Play Game</button>
+  <button *ngIf="hasEnoughTokensToPlay(game.tokensToPlay)"
+          class="btn btn-success"
+          (click)="playGame(game.gameTitle, game.tokensToPlay)">Play Game</button>
 
-  <div *ngIf="currentBalance < game.tokensToPlay">
-    <p class="text-danger">Current balance too low to play</p>
-    <button class="btn btn-info">Card Refill</button>
+  <div *ngIf="!hasEnoughTokensToPlay(game.tokensToPlay)">
+    <p class="text-danger">Current balance too low to play. Please refill your card.</p>
   </div>
 </div>

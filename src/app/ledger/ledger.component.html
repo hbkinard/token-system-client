@@ -15,22 +15,22 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let transaction of transactions; let i = index;">
+    <tr *ngFor="let transaction of arcadeTransactions; let i = index;">
 
-      <td>{{transaction.dateAndTime}}</td>
+      <td>{{transaction.dateAndTime | date: 'medium' }}</td>
 
       <td>{{transaction.transactionType}}</td>
 
-      <td *ngIf="transaction.transactionType === 'CardRefill'">Purchased {{transaction.numberTokensPurchased}} tokens</td>
-      <td *ngIf="transaction.transactionType === 'GamePlay'">Played {{ transaction.gameTitle}}</td>
+      <td *ngIf="transaction.transactionType === 'Card Refill'">Purchased {{transaction.numberTokensPurchased}} tokens</td>
+      <td *ngIf="transaction.transactionType === 'Game Play'">Played {{ transaction.gameTitle}}</td>
 
-      <td *ngIf="transaction.transactionType === 'CardRefill'" class="text-success">
+      <td *ngIf="transaction.transactionType === 'Card Refill'" class="text-success">
         <fa-icon [icon]="faArrowUp"></fa-icon>
         {{transaction.numberTokensPurchased}}
       </td>
-      <td *ngIf="transaction.transactionType === 'GamePlay'" class="text-danger">
+      <td *ngIf="transaction.transactionType === 'Game Play'" class="text-danger">
         <fa-icon [icon]="faArrowDown"></fa-icon>
-        {{ transaction.tokenCostPerGame}}
+        {{ transaction.tokensToPlay}}
       </td>
 
       <td>{{transaction.balanceAfterTransaction}} tokens left</td>

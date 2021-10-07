@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -41,6 +41,9 @@ export class LedgerComponent implements OnInit {
       balanceAfterTransaction: 14
     }
   ];
+
+  @Input()
+  arcadeTransactions = [];
 
   ngOnInit(): void {
   }

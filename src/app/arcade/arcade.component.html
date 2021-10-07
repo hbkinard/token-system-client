@@ -9,8 +9,12 @@
 
   <div class="row g-lg-5">
     <div class="col-6">
-      <app-game-center [currentBalance]="currentBalance" class="category"></app-game-center>
+      <app-game-center [currentBalance]="currentBalance"
+                       class="category"
+                        (gamePlayed)="onGamePlayed($event)">
+      </app-game-center>
     </div>
+
     <div class="col-6 userRow">
       <app-user-status [currentBalance]="currentBalance"></app-user-status>
       <hr/>
@@ -34,7 +38,7 @@
   </div>
 
   <div *ngIf="showHistory" class="category">
-    <app-ledger class="category"></app-ledger>
+    <app-ledger [arcadeTransactions]="arcadeTransactions" class="category"></app-ledger>
   </div>
 
 </div>
