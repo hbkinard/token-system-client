@@ -7,8 +7,8 @@
 
 <div class="container">
 
-  <div class="row g-lg-5">
-    <div class="col-6">
+  <div class="row gameAndRefillRow">
+    <div class="col-6 gameRow">
       <app-game-center [currentBalance]="currentBalance"
                        class="category"
                         (gamePlayed)="onGamePlayed($event)">
@@ -30,11 +30,11 @@
 
 
   <div *ngIf="!showHistory" class="div category">
-    <button class="btn btn-info" (click)="toggleShowTransactionHistory()">Show Transaction History</button>
+    <button class="btn btn-info btn-lg" (click)="toggleShowTransactionHistory()">Show Transaction History</button>
   </div>
 
   <div *ngIf="showHistory" class="div category">
-    <button class="btn btn-info" (click)="toggleShowTransactionHistory()">Hide Transaction History</button>
+    <button class="btn btn-info btn-lg" (click)="toggleShowTransactionHistory()">Hide Transaction History</button>
   </div>
 
   <div *ngIf="showHistory" class="category">

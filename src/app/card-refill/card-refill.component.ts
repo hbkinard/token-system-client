@@ -53,7 +53,7 @@ export class CardRefillComponent implements OnInit {
 
 
   showTotalCost() {
-    this.totalTokenCost = this.tokenInput * .25;;
+    this.totalTokenCost = this.tokenInput * .25;
     this.toggleShowingTotalCost();
   }
 
@@ -79,4 +79,11 @@ export class CardRefillComponent implements OnInit {
       this.totalTokenCost = 0;
     }
   }
+
+  cancelPurchase() {
+    this.togglePurchaseStatus();
+    this.toggleShowingTotalCost();
+    this.invalidTokenPurchase = false;
+  }
+
 }

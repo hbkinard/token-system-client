@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { CardRefill } from '../models/cardRefill.model';
 
 @Component({
   selector: 'app-arcade',
@@ -11,7 +10,6 @@ export class ArcadeComponent implements OnInit {
   currentBalance = 0;
   showHistory = false;
   newBalance = 0;
-  //cardRefill: CardRefill;
 
   cardRefill = {
     transactionType: '',
@@ -31,7 +29,6 @@ export class ArcadeComponent implements OnInit {
   arcadeTransactions: Array<any> = [];
 
   constructor() { }
-
 
   ngOnInit(): void {
   }

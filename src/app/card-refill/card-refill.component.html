@@ -1,17 +1,17 @@
 <div *ngIf="!isRefillingCard">
-  <button class="btn btn-info" (click)="togglePurchaseStatus()">Card Refill</button>
+  <button class="btn btn-info btn-lg col-12 align-content-lg-center" (click)="togglePurchaseStatus()">Card Refill</button>
 </div>
 
 <div *ngIf="isRefillingCard"class="form-group">
   <p class="text-secondary fieldDescriptions">Tokens are $0.25 each</p>
-  <label for="cardRefill">Number of Tokens to Purchase: </label>
-  <input class="form-control" type="text" id="cardRefill"
+  <label for="cardRefill" class="col-12">Number of Tokens to Purchase: </label>
+  <input class="form-control" type="text" id="cardRefill" class="col-12"
          [(ngModel)]="tokenInput"
          (change)="setNumberTokensRequested($event)">
 
 
   <div *ngIf="!showingTotalTokenCost">
-    <button class="btn btn-info" (click)="showTotalCost()">Show Total Cost</button>
+    <button class="btn btn-info btn-lg" (click)="showTotalCost()">Show Total Cost</button>
   </div>
 
   <div *ngIf="showingTotalTokenCost" class="alert alert-info" role="alert">
@@ -19,8 +19,8 @@
   </div>
 
   <div *ngIf="showingTotalTokenCost" class="btn-group">
-    <button class="btn btn-success" (click)="purchaseTokens()">Purchase Tokens</button>
-    <button class="btn btn-danger" (click)="togglePurchaseStatus()">Cancel Purchase</button>
+    <button class="btn btn-success btn-lg" (click)="purchaseTokens()">Purchase Tokens</button>
+    <button class="btn btn-danger btn-lg" (click)="cancelPurchase()">Cancel Purchase</button>
   </div>
 
 
