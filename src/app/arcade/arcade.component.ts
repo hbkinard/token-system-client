@@ -7,16 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArcadeComponent implements OnInit {
 
-  constructor() { }
-
   currentBalance = 10;
   showHistory = false;
+  newBalance = 0;
+
+  constructor() { }
+
 
   ngOnInit(): void {
   }
 
   toggleShowTransactionHistory() {
     this.showHistory ? this.showHistory = false : this.showHistory = true;
+  }
+
+  onTokensPurchased(data: {numberTokensPurchased: number}) {
+    this.newBalance = this.currentBalance + data.numberTokensPurchased;
+    this.currentBalance = this.newBalance;
+    console.log(this.currentBalance);
   }
 
 }

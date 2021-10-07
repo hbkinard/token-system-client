@@ -6,14 +6,24 @@
 </div>
 
 <div class="container">
-  <div class="row">
+
+  <div class="row g-lg-5">
     <div class="col-6">
       <app-game-center [currentBalance]="currentBalance" class="category"></app-game-center>
     </div>
-    <div class="col-6">
-      <app-game-center class="category"></app-game-center>
+    <div class="col-6 userRow">
+      <app-user-status [currentBalance]="currentBalance"></app-user-status>
+      <hr/>
+      <app-card-refill [currentBalance]="currentBalance"
+                       class="category"
+                        (tokensPurchased)="onTokensPurchased($event)">
+
+      </app-card-refill>
     </div>
   </div>
+
+
+
 
   <div *ngIf="!showHistory" class="div category">
     <button class="btn btn-info" (click)="toggleShowTransactionHistory()">Show Transaction History</button>

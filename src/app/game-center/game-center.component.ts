@@ -19,6 +19,11 @@ export class GameCenterComponent implements OnInit {
       gameId: '2',
       gameTitle: 'Go Stop Go',
       tokensToPlay: 4
+    },
+    {
+      gameId: '3',
+      gameTitle: 'Long Story Game',
+      tokensToPlay: 10
     }
   ];
 

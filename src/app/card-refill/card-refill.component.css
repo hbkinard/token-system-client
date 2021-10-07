@@ -1,0 +1,18 @@
+.btn {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.form-group {
+  width: 50%;
+  margin-bottom: 40px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.fieldDescriptions {
+  font-size: 20px;
+  font-style: italic;
+}

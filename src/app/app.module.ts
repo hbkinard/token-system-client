@@ -11,6 +11,9 @@ import {FormsModule} from "@angular/forms";
 import { CardRefillComponent } from './card-refill/card-refill.component';
 
 import { RouterModule } from '@angular/router';
+import { UserStatusComponent } from './user-status/user-status.component';
+import {NgPipesModule} from 'ng-pipes';
+// import {CurrencyPipe} from "@angular/common";
 
 
 @NgModule({
@@ -19,14 +22,16 @@ import { RouterModule } from '@angular/router';
     GameCenterComponent,
     LedgerComponent,
     ArcadeComponent,
-    CardRefillComponent
+    CardRefillComponent,
+    UserStatusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NgPipesModule,
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

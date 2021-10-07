@@ -1,1 +1,23 @@
-<p>card-refill works!</p>
+<div *ngIf="!isRefillingCard">
+  <button class="btn btn-info" (click)="togglePurchaseStatus()" >Card Refill</button>
+</div>
+
+<div *ngIf="isRefillingCard"class="form-group">
+  <p class="text-secondary fieldDescriptions">Tokens are $0.25 each</p>
+  <label for="cardRefill">Number of Tokens to Purchase: </label>
+  <input class="form-control" type="text" id="cardRefill" (change)="setNumberTokensRequested($event)"/>
+
+  <button class="btn btn-success" (click)="purchaseTokens()">Purchase Tokens</button>
+
+
+  <div *ngIf="showTotalTokenCost" class="alert alert-danger" role="alert">
+    <p class="text-secondary fieldDescriptions">Total token cost is {{ totalTokenCost | currency }}</p>
+  </div>
+
+  <div *ngIf="invalidTokenPurchase" class="alert alert-danger" role="alert">
+    Invalid token number. You may purchase up to 1,000 tokens at a time.
+  </div>
+
+</div>
+
+
