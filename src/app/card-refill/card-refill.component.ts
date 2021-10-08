@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-//import { CardRefill } from '../models/cardRefill.model';
-
-// import { CurrencyPipe } from '@angular/common';
+import {templateJitUrl} from "@angular/compiler";
 
 @Component({
   selector: 'app-card-refill',
@@ -25,12 +23,9 @@ export class CardRefillComponent implements OnInit {
   tokensPurchased = new EventEmitter<{numberTokensPurchased: number,
                                       totalTokenCost: number}>();
 
-  constructor() {
-  }
+  constructor() {}
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   togglePurchaseStatus() {
     if (this.isRefillingCard) {
@@ -53,8 +48,12 @@ export class CardRefillComponent implements OnInit {
 
   // will set currency format in template file
   showTotalCost() {
-    this.totalTokenCost = this.tokenInput * .25;
-    this.toggleShowingTotalCost();
+    if (!this.isValidTokenInput()) {
+      this.invalidTokenPurchase = true;
+    } else {
+      this.totalTokenCost = this.tokenInput * .25;
+      this.toggleShowingTotalCost();
+    }
   }
 
   toggleShowingTotalCost() {
@@ -62,11 +61,7 @@ export class CardRefillComponent implements OnInit {
   }
 
   purchaseTokens() {
-    // validate input - only allow up to 1,000 tokens to be purchased at a time
-    // and check for letters/non-numbers
-    if (this.numberTokensRequested < 0
-          || this.numberTokensRequested > 1000
-          || isNaN(this.numberTokensRequested)) {
+    if (!this.isValidTokenInput()) {
       this.invalidTokenPurchase = true;
 
     // process token purchase and emit event to arcade component
@@ -76,6 +71,8 @@ export class CardRefillComponent implements OnInit {
         numberTokensPurchased: this.numberTokensPurchased,
         totalTokenCost: this.totalTokenCost
       })
+
+      // reset card refill info for next purchase
       this.togglePurchaseStatus();
       this.toggleShowingTotalCost();
       this.invalidTokenPurchase = false;
@@ -88,5 +85,13 @@ export class CardRefillComponent implements OnInit {
     this.togglePurchaseStatus();
     this.toggleShowingTotalCost();
     this.invalidTokenPurchase = false;
+  }
+
+  // validate input - only allow up to 1,000 tokens to be purchased at a time
+  // and check for letters/non-numbers
+  isValidTokenInput() {
+    return !(this.numberTokensRequested < 0
+      || this.numberTokensRequested > 1000
+      || isNaN(this.numberTokensRequested));
   }
 }

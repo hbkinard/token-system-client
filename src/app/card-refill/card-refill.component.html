@@ -14,7 +14,7 @@
     <button class="btn btn-info btn-lg" (click)="showTotalCost()">Show Total Cost</button>
   </div>
 
-  <div *ngIf="showingTotalTokenCost" class="alert alert-info" role="alert">
+  <div *ngIf="showingTotalTokenCost" class="alert alert-info totalCost" role="alert">
     <p class="text-secondary fieldDescriptions">Total token cost is {{ totalTokenCost | currency: 'USD' }}</p>
   </div>
 
@@ -24,11 +24,9 @@
   </div>
 
 
-  <div *ngIf="invalidTokenPurchase" class="alert alert-danger" role="alert">
+  <div *ngIf="invalidTokenPurchase" class="alert alert-danger invalidMessage" role="alert">
     Invalid token number. You may purchase up to 1,000 tokens at a time.
   </div>
-
-
 </div>
 
 

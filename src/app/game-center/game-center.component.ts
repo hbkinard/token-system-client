@@ -9,19 +9,17 @@ export class GameCenterComponent implements OnInit {
 
   constructor() { }
 
+  // hardcoded for exercise, but would break up, add gameId, etc. in real application
   games = [
     {
-      gameId: '1',
       gameTitle: 'Rock Run',
       tokensToPlay: 2
     },
     {
-      gameId: '2',
       gameTitle: 'Go Stop Go',
       tokensToPlay: 4
     },
     {
-      gameId: '3',
       gameTitle: 'Long Story Game',
       tokensToPlay: 10
     }
@@ -34,13 +32,13 @@ export class GameCenterComponent implements OnInit {
   gamePlayed = new EventEmitter<{gameTitle: string, tokensToPlay: number}>();
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   hasEnoughTokensToPlay(numberTokensNeeded: number) {
     return this.currentBalance >= numberTokensNeeded;
   }
 
+  // emit event to arcade component
   playGame(gameTitle: string, tokensToPlay: number) {
     this.gamePlayed.emit({gameTitle: gameTitle, tokensToPlay: tokensToPlay})
   }

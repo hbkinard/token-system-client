@@ -10,15 +10,14 @@ export class LedgerComponent implements OnInit {
 
   constructor() { }
 
-  time = new Date().getTime()
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
 
 
+  // get transactions to display from arcade component
   @Input()
   arcadeTransactions = [];
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

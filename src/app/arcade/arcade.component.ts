@@ -31,16 +31,17 @@ export class ArcadeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggleShowTransactionHistory() {
     this.showHistory ? this.showHistory = false : this.showHistory = true;
   }
 
+  // get data from card-refill
   onTokensPurchased(data: {numberTokensPurchased: number, totalTokenCost: number}) {
-    this.newBalance = this.currentBalance + data.numberTokensPurchased;
-    this.currentBalance = this.newBalance;
+
+    // increment current balance
+    this.currentBalance = this.currentBalance + data.numberTokensPurchased;
 
     this.cardRefill = {transactionType: 'Card Refill',
                         dateAndTime: new Date().getTime(),
@@ -48,12 +49,17 @@ export class ArcadeComponent implements OnInit {
                         totalTokenCost: data.totalTokenCost,
                         balanceAfterTransaction: this.currentBalance};
 
+    // add transaction to beginning of arcadeTransactions array
+    // if this application grew, I would re-examine the use of the 'unshift' function
+    // as it would be expensive to shift all elements to the right with every transaction
     this.arcadeTransactions.unshift(this.cardRefill);
   }
 
+  // get data from game-center
   onGamePlayed(data: {gameTitle: string, tokensToPlay: number }) {
-    this.newBalance = this.currentBalance - data.tokensToPlay;
-    this.currentBalance = this.newBalance;
+
+    // decrement current balance
+    this.currentBalance = this.currentBalance - data.tokensToPlay;
 
     this.gamePlay = {transactionType: 'Game Play',
       dateAndTime: new Date().getTime(),

@@ -12,7 +12,5 @@ export class UserStatusComponent implements OnInit {
   @Input()
   currentBalance = 0;
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
