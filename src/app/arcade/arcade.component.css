@@ -2,3 +2,8 @@
 .userRow {
   padding-left: 200px;
 }
+
+.fieldDescriptions {
+  font-size: 20px;
+  font-style: italic;
+}

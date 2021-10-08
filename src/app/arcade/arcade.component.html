@@ -37,8 +37,12 @@
     <button class="btn btn-info btn-lg" (click)="toggleShowTransactionHistory()">Hide Transaction History</button>
   </div>
 
-  <div *ngIf="showHistory" class="category">
+  <div *ngIf="showHistory && arcadeTransactions.length !== 0" class="category">
     <app-ledger [arcadeTransactions]="arcadeTransactions" class="category"></app-ledger>
+  </div>
+
+  <div *ngIf="showHistory && arcadeTransactions.length === 0" class="category">
+    <p class="text-secondary fieldDescriptions">You do not have any transactions.</p>
   </div>
 
 </div>

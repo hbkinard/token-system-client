@@ -2,5 +2,6 @@
 //   transactionType: string;
 //   dateAndTime: any;
 //   numberTokensPurchased: number;
+//   totalTokenCost: number;
 //   balanceAfterTransaction: number;
 // }

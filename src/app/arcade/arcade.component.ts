@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class ArcadeComponent implements OnInit {
 
   currentBalance = 0;
-  showHistory = false;
+  showHistory = true;
   newBalance = 0;
 
   cardRefill = {
     transactionType: '',
     dateAndTime: 0,
     numberTokensPurchased: 0,
+    totalTokenCost: 0,
     balanceAfterTransaction: 0
   }
 
@@ -37,13 +38,14 @@ export class ArcadeComponent implements OnInit {
     this.showHistory ? this.showHistory = false : this.showHistory = true;
   }
 
-  onTokensPurchased(data: {numberTokensPurchased: number}) {
+  onTokensPurchased(data: {numberTokensPurchased: number, totalTokenCost: number}) {
     this.newBalance = this.currentBalance + data.numberTokensPurchased;
     this.currentBalance = this.newBalance;
 
     this.cardRefill = {transactionType: 'Card Refill',
                         dateAndTime: new Date().getTime(),
                         numberTokensPurchased: data.numberTokensPurchased,
+                        totalTokenCost: data.totalTokenCost,
                         balanceAfterTransaction: this.currentBalance};
 
     this.arcadeTransactions.unshift(this.cardRefill);

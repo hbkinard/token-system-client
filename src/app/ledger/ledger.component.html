@@ -15,13 +15,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let transaction of arcadeTransactions; let i = index;">
+    <tr *ngFor="let transaction of arcadeTransactions">
 
       <td>{{transaction.dateAndTime | date: 'medium' }}</td>
 
       <td>{{transaction.transactionType}}</td>
 
-      <td *ngIf="transaction.transactionType === 'Card Refill'">Purchased {{transaction.numberTokensPurchased}} tokens</td>
+      <td *ngIf="transaction.transactionType === 'Card Refill'">Purchased {{transaction.numberTokensPurchased}} tokens
+        for {{transaction.totalTokenCost | currency: 'USD'}}
+      </td>
+
       <td *ngIf="transaction.transactionType === 'Game Play'">Played {{ transaction.gameTitle}}</td>
 
       <td *ngIf="transaction.transactionType === 'Card Refill'" class="text-success">

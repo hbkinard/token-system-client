@@ -22,7 +22,8 @@ export class CardRefillComponent implements OnInit {
   currentBalance = 0;
 
   @Output()
-  tokensPurchased = new EventEmitter<{numberTokensPurchased: number}>();
+  tokensPurchased = new EventEmitter<{numberTokensPurchased: number,
+                                      totalTokenCost: number}>();
 
   constructor() {
   }
@@ -34,15 +35,14 @@ export class CardRefillComponent implements OnInit {
   togglePurchaseStatus() {
     if (this.isRefillingCard) {
       this.isRefillingCard = false;
-      //this.toggleShowingTotalCost();
       this.tokenInput = 0;
       this.totalTokenCost = 0;
     } else {
       this.isRefillingCard = true;
     }
-
   }
 
+  // capture user input and convert to number for validation before processing purchase
   setNumberTokensRequested(event: any): void {
     this.invalidTokenPurchase = false;
     this.numberTokensRequested = event.target.value;
@@ -51,7 +51,7 @@ export class CardRefillComponent implements OnInit {
     this.numberTokensRequested = +this.numberTokensRequested;
   }
 
-
+  // will set currency format in template file
   showTotalCost() {
     this.totalTokenCost = this.tokenInput * .25;
     this.toggleShowingTotalCost();
@@ -63,15 +63,19 @@ export class CardRefillComponent implements OnInit {
 
   purchaseTokens() {
     // validate input - only allow up to 1,000 tokens to be purchased at a time
+    // and check for letters/non-numbers
     if (this.numberTokensRequested < 0
           || this.numberTokensRequested > 1000
           || isNaN(this.numberTokensRequested)) {
       this.invalidTokenPurchase = true;
 
-    // process token purchase
+    // process token purchase and emit event to arcade component
     } else {
       this.numberTokensPurchased = this.numberTokensRequested;
-      this.tokensPurchased.emit({numberTokensPurchased: this.numberTokensPurchased})
+      this.tokensPurchased.emit({
+        numberTokensPurchased: this.numberTokensPurchased,
+        totalTokenCost: this.totalTokenCost
+      })
       this.togglePurchaseStatus();
       this.toggleShowingTotalCost();
       this.invalidTokenPurchase = false;
@@ -85,5 +89,4 @@ export class CardRefillComponent implements OnInit {
     this.toggleShowingTotalCost();
     this.invalidTokenPurchase = false;
   }
-
 }
