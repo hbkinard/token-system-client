@@ -92,6 +92,7 @@ export class CardRefillComponent implements OnInit {
   isValidTokenInput() {
     return !(this.numberTokensRequested < 0
       || this.numberTokensRequested > 1000
+      || this.numberTokensRequested % 1 != 0
       || isNaN(this.numberTokensRequested));
   }
 }
